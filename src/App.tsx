@@ -67,7 +67,7 @@ export default function App() {
 
       {/* 3 · The 9th island */}
       <section className="flex min-h-[60svh] flex-col items-center justify-center gap-4 bg-gradient-to-b from-cream to-lavender/30 px-6 text-center">
-        <img src="/art/ninth.svg" alt="" className="w-full max-w-sm drop-shadow-xl" />
+        <img src="/art/ninth.webp" alt="" className="w-full max-w-sm drop-shadow-xl" />
         <h2 className="font-display text-2xl text-ink">{content.ninthIsland.title}</h2>
         <p className="max-w-md text-sm text-ink-soft">{content.ninthIsland.note}</p>
       </section>

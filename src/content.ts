@@ -6,8 +6,9 @@
  *  the photos, the song, the easter eggs, the letter. The site
  *  renders entirely from this config.
  *
- *  Placeholder content below is believable but fake — replace it
- *  with the real thing before launch (owner checklist, PRD §11).
+ *  Era stories, photos, and captions reflect the real timeline.
+ *  Still placeholder: her name, the song, and the letter —
+ *  replace before launch (owner checklist, PRD §11).
  * ─────────────────────────────────────────────────────────────────
  */
 
@@ -61,13 +62,13 @@ export interface Content {
 }
 
 export const content: Content = {
-  herName: 'My Love', // ← her name as it should appear
-  relationshipStart: '2018-07-15', // ← the exact start date (gate answer + counter)
+  herName: 'Derv', // what he calls her — shown in the welcome greeting
+  relationshipStart: '2018-07-15', // confirmed — gate answer + day counter
 
   song: {
-    title: 'Our Song',
-    artist: 'The Artist',
-    file: '/audio/song.mp3', // ← drop the MP3 at public/audio/song.mp3
+    title: 'Weak',
+    artist: 'Michael Pangilinan',
+    file: '/audio/song.mp3',
   },
 
   eras: [
@@ -75,75 +76,85 @@ export const content: Content = {
       id: 'how-we-met',
       chapter: 1,
       title: 'Where it all began.',
-      years: '2018–2019',
-      note: 'A campus, a coincidence, and one conversation that refused to end. Neither of us wanted to say goodbye first.',
-      art: { layers: ['/art/era1.svg'] },
+      years: '2018',
+      note: 'Dinner dates, a wall of travel posters, and a July 15 that changed everything. We stood in front of the whole world and promised to see it together.',
+      art: { layers: ['/art/era1.webp'] },
       polaroids: [
-        { src: '/photos/placeholder-1.svg', caption: 'first photo ever', date: 'Jul 2018' },
-        { src: '/photos/placeholder-2.svg', caption: 'that first coffee', date: 'Aug 2018' },
+        { src: '/photos/era1-01.webp', caption: 'day one', date: 'Jul 15, 2018' },
+        { src: '/photos/era1-02.webp', caption: 'our first dinner date', date: 'Jun 2018' },
+        { src: '/photos/era1-03.webp', caption: 'already planning the world', date: 'Jul 2018' },
+        { src: '/photos/era1-04.webp', caption: 'under a sky of stars', date: 'Nov 2018' },
       ],
       easterEggs: [
-        { x: 0.62, y: 0.41, icon: '🧋', message: 'Still your usual order. Some things never change.' },
+        { x: 0.62, y: 0.41, icon: '🗺️', message: 'Tokyo. Dubai. London. We pointed at a wall of posters — and then we actually went.' },
       ],
     },
     {
       id: 'first-adventures',
       chapter: 2,
       title: 'The first adventures.',
-      years: '2019–2020',
-      note: 'Weekend trips on a student budget. We got lost more than once and it was never once a problem.',
-      art: { layers: ['/art/era2.svg'] },
+      years: '2019',
+      note: 'Our first anniversary over sushi, our first photos on real film, our first trip together. Bohol was proof: when we say we will go, we go.',
+      art: { layers: ['/art/era2.webp'] },
       polaroids: [
-        { src: '/photos/placeholder-3.svg', caption: 'that one trip', date: 'Mar 2019' },
-        { src: '/photos/placeholder-4.svg', caption: 'we survived the hike', date: 'Nov 2019' },
+        { src: '/photos/era2-01.webp', caption: 'laughing into the new year', date: 'Jan 1, 2019' },
+        { src: '/photos/era2-02.webp', caption: 'anniversary no. 1', date: 'Jul 2019' },
+        { src: '/photos/era2-03.webp', caption: 'our first instax', date: 'Oct 2019' },
+        { src: '/photos/era2-04.webp', caption: 'Bohol, finally', date: 'Nov 2019' },
       ],
       easterEggs: [
-        { x: 0.3, y: 0.55, icon: '🗺️', message: 'The map was upside down for an hour. You knew.' },
+        { x: 0.3, y: 0.55, icon: '🍣', message: 'Sushi on July 14, 2019. A one-day-early anniversary tradition was born.' },
       ],
     },
     {
-      id: 'the-hard-year',
+      id: 'the-world-closed',
       chapter: 3,
-      title: 'The year we held on.',
+      title: 'The year the world closed.',
       years: '2020–2021',
-      note: 'Screens between us, and somehow closer than ever. We learned that distance is just geography.',
-      art: { layers: ['/art/era3.svg'] },
+      note: 'So we built our own little world instead — duets at the keyboard, sushi anniversaries at home, a food business from scratch, and a puppy named Bella.',
+      art: { layers: ['/art/era3.webp'] },
       polaroids: [
-        { src: '/photos/placeholder-5.svg', caption: 'video call #214', date: 'Jun 2020' },
-        { src: '/photos/placeholder-6.svg', caption: 'finally, again', date: 'Apr 2021' },
+        { src: '/photos/era3-01.webp', caption: 'we started a bakery??', date: 'Jul 2020' },
+        { src: '/photos/era3-02.webp', caption: 'anniversary, home edition', date: 'Jul 2020' },
+        { src: '/photos/era3-03.webp', caption: 'date night, pandemic style', date: 'May 2021' },
+        { src: '/photos/era3-04.webp', caption: 'the world, reopening', date: 'Dec 2021' },
       ],
       easterEggs: [
-        { x: 0.7, y: 0.35, icon: '💻', message: 'You always fell asleep first. I never hung up.' },
+        { x: 0.7, y: 0.35, icon: '🧁', message: "Amelia's, est. 2020. Mango graham, cheesy puto, and the best business partner I'll ever have." },
       ],
     },
     {
-      id: 'building-us',
+      id: 'finding-our-normal',
       chapter: 4,
-      title: 'Building something real.',
-      years: '2021–2023',
-      note: 'First apartment, mismatched furniture, a home. Every small thing we chose, we chose together.',
-      art: { layers: ['/art/era4.svg'] },
+      title: 'Finding our normal.',
+      years: '2022–2023',
+      note: 'Movie dates came back. So did donut runs, photo booths, and our mall Christmas tradition. The ordinary days quietly became my favorite ones.',
+      art: { layers: ['/art/era4.webp'] },
       polaroids: [
-        { src: '/photos/placeholder-7.svg', caption: 'moving day chaos', date: 'Sep 2021' },
-        { src: '/photos/placeholder-8.svg', caption: 'our first table', date: 'Jan 2022' },
+        { src: '/photos/era4-01.webp', caption: 'donut judge us', date: 'Jul 2022' },
+        { src: '/photos/era4-02.webp', caption: 'our mall Christmas tradition', date: 'Nov 2022' },
+        { src: '/photos/era4-03.webp', caption: 'movie dates are back', date: 'Feb 2023' },
+        { src: '/photos/era4-04.webp', caption: 'proof, in strips', date: 'Sep 2023' },
       ],
       easterEggs: [
-        { x: 0.45, y: 0.6, icon: '🪴', message: 'The plant lived. Against all odds. Like us.' },
+        { x: 0.45, y: 0.6, icon: '🎅', message: 'Bella wore the santa suit better than either of us. No contest.' },
       ],
     },
     {
-      id: 'the-world-together',
+      id: 'out-in-the-world',
       chapter: 5,
-      title: 'The world, together.',
-      years: '2023–2025',
-      note: 'Passports filling up, a list of places that keeps growing. My favorite view is still you looking at the view.',
-      art: { layers: ['/art/era5.svg'] },
+      title: 'Out in the world.',
+      years: '2024–2025',
+      note: 'Lakes and kayaks, brunches with Bella, golden-hour walks in the park. The world opened back up — and it was exactly as big as we remembered promising each other.',
+      art: { layers: ['/art/era5.webp'] },
       polaroids: [
-        { src: '/photos/placeholder-9.svg', caption: 'sunset no. 47', date: 'May 2024' },
-        { src: '/photos/placeholder-10.svg', caption: 'you, mid-laugh', date: 'Oct 2024' },
+        { src: '/photos/era5-01.webp', caption: 'we survived the lake', date: 'Mar 2024' },
+        { src: '/photos/era5-02.webp', caption: 'brunch with the baby', date: 'May 2024' },
+        { src: '/photos/era5-03.webp', caption: 'Sunday best', date: 'Jun 2024' },
+        { src: '/photos/era5-04.webp', caption: 'golden hour, golden you', date: 'Sep 2025' },
       ],
       easterEggs: [
-        { x: 0.55, y: 0.3, icon: '✈️', message: 'Window seat is yours. Forever. I accepted this.' },
+        { x: 0.55, y: 0.3, icon: '🛶', message: 'We survived the bamboo raft. Barely. Together. That counts as a metaphor.' },
       ],
     },
     {
@@ -151,11 +162,11 @@ export const content: Content = {
       chapter: 6,
       title: 'Eight years of us.',
       years: '2025–today',
-      note: 'Not the finish line — just the best view so far. Every day still feels like the good part.',
-      art: { layers: ['/art/era6.svg'] },
+      note: 'A cat joined the family. We hiked to a summit and looked back at how far we have come. Eight years in, every day still feels like the good part.',
+      art: { layers: ['/art/era6.webp'] },
       polaroids: [
-        { src: '/photos/placeholder-11.svg', caption: 'last week', date: 'Jul 2026' },
-        { src: '/photos/placeholder-12.svg', caption: 'us, always', date: 'Jul 2026' },
+        { src: '/photos/era6-01.webp', caption: 'the newest member', date: 'Mar 2026' },
+        { src: '/photos/era6-02.webp', caption: 'still matching', date: 'Jun 2026' },
       ],
       easterEggs: [
         { x: 0.5, y: 0.45, icon: '💍', message: 'This island has room for more buildings…' },
