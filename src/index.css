@@ -22,19 +22,10 @@
   --font-hand: 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+/* No CSS smooth scrolling — it fights GSAP's programmatic scrolls. */
 body {
   background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
   overflow-x: hidden;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
 }
