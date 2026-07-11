@@ -9,6 +9,8 @@ interface Props {
   era: Era
   /** Reports which chapter the camera is on, for the fixed nav. */
   onActive: (chapter: number) => void
+  /** Opens the lightbox on this era's polaroid at the given index. */
+  onOpenPolaroid: (era: Era, index: number) => void
 }
 
 /**
@@ -21,7 +23,7 @@ interface Props {
  * reduced-motion users get a complete static page — the PRD's
  * crossfade-only fallback.
  */
-export default function EraSection({ era, onActive }: Props) {
+export default function EraSection({ era, onActive, onOpenPolaroid }: Props) {
   const section = useRef<HTMLElement>(null)
   const stage = useRef<HTMLDivElement>(null)
   const island = useRef<HTMLDivElement>(null)
@@ -165,9 +167,12 @@ export default function EraSection({ era, onActive }: Props) {
 
         <div ref={fan} className="flex items-center justify-center">
           {era.polaroids.map((p, i) => (
-            <figure
+            <button
               key={p.src}
-              className="-ml-5 bg-white p-2 pb-3 shadow-lg first:ml-0"
+              type="button"
+              onClick={() => onOpenPolaroid(era, i)}
+              aria-label={`Enlarge photo: ${p.caption}`}
+              className="relative -ml-5 cursor-pointer bg-white p-2 pb-3 shadow-lg transition-transform duration-200 first:ml-0 hover:z-10 hover:scale-105 motion-reduce:transition-none"
               style={{ transform: `rotate(${ROTATIONS[i % ROTATIONS.length]}deg)` }}
             >
               <img
@@ -177,10 +182,10 @@ export default function EraSection({ era, onActive }: Props) {
                 decoding="async"
                 className="h-24 w-24 object-cover md:h-32 md:w-32"
               />
-              <figcaption className="mt-1.5 font-hand text-[11px] text-ink-soft md:text-xs">
+              <span className="mt-1 block font-hand text-sm leading-tight text-ink-soft md:text-base">
                 {p.caption}
-              </figcaption>
-            </figure>
+              </span>
+            </button>
           ))}
         </div>
       </div>

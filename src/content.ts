@@ -6,9 +6,9 @@
  *  the photos, the song, the easter eggs, the letter. The site
  *  renders entirely from this config.
  *
- *  Era stories, photos, and captions reflect the real timeline.
- *  Still placeholder: her name, the song, and the letter —
- *  replace before launch (owner checklist, PRD §11).
+ *  Era stories, photos, captions, name, and song are all real.
+ *  Still placeholder: the letter — replace before launch
+ *  (owner checklist, PRD §11).
  * ─────────────────────────────────────────────────────────────────
  */
 

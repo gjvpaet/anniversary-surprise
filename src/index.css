@@ -1,9 +1,12 @@
 @import 'tailwindcss';
+/* Self-hosted fonts (bundled by Vite — no CDN, works offline) */
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/caveat';
 
 /*
  * Design tokens — Pearl & Co.–inspired pastel diorama world.
- * Self-hosted display + handwriting fonts land on Day 3;
- * the stacks below are their metric-friendly fallbacks.
+ * Fraunces = storybook display serif, Caveat = polaroid handwriting;
+ * system stacks remain as fallbacks while the fonts stream in.
  */
 @theme {
   --color-cream: #faf4ec;
@@ -17,9 +20,9 @@
   --color-ink: #453a3d;
   --color-ink-soft: #8a7a7e;
 
-  --font-display: 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
   --font-sans: 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
-  --font-hand: 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive;
+  --font-hand: 'Caveat Variable', 'Bradley Hand', 'Segoe Print', cursive;
 }
 
 /* No CSS smooth scrolling — it fights GSAP's programmatic scrolls. */
