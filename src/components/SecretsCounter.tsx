@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSecrets } from '../SecretsContext'
+import { celebrate } from '../lib/celebrate'
 import { dismissHint, isHintDismissed } from '../lib/hint'
+import { playEffect } from '../lib/sfx'
 
 interface Props {
   onOpenVault: () => void
@@ -15,7 +17,9 @@ interface Props {
  * The chip's debut — the live first find, not a reload with persisted
  * progress — gets a chime and a short glow so it can't slip in
  * unnoticed, plus a tooltip above it that explains the counter and
- * stays (across visits) until she closes it.
+ * stays (across visits) until she closes it. The live SEVENTH find is
+ * the finale: confetti and a cheer (both one-shot, never on a reload
+ * already at 7/7) as the chip morphs into the vault key.
  */
 export default function SecretsCounter({ onOpenVault }: Props) {
   const { found, total, allFound } = useSecrets()
@@ -24,6 +28,7 @@ export default function SecretsCounter({ onOpenVault }: Props) {
   // block the autoplay anyway, with no user gesture in the stack)
   const sizeAtMount = useRef(found.size)
   const debutFired = useRef(false)
+  const completionFired = useRef(false)
   const [glowing, setGlowing] = useState(false)
   const [hintDismissed, setHintDismissed] = useState(isHintDismissed)
 
@@ -32,12 +37,22 @@ export default function SecretsCounter({ onOpenVault }: Props) {
     // one-shot guard: StrictMode double-invokes effects in dev
     debutFired.current = true
     // fires inside her tap on the egg, so autoplay policies allow it;
-    // if blocked anyway, the chime is garnish — fail silently
-    new Audio('/audio/secret-found.wav').play().catch(() => {})
+    // playEffect ducks the song under the chime and fails silently
+    playEffect('/audio/secret-found.wav')
     // never unset: the keyframe's fixed iteration count (3) ends the
     // animation on its own
     setGlowing(true)
   }, [found.size])
+
+  useEffect(() => {
+    // the live 7th find only — a visit that already STARTS at 7/7
+    // mounts quiet, same rule as the debut above. sizeAtMount does
+    // double duty: 5/7-persisted-then-finished-live still celebrates.
+    if (!allFound || sizeAtMount.current >= total || completionFired.current) return
+    completionFired.current = true
+    playEffect('/audio/all-found.mp3')
+    celebrate()
+  }, [allFound, total])
 
   if (found.size === 0) return null
 
