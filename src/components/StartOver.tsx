@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { lock } from '../lib/gate'
 import { clearFound } from '../lib/secrets'
+import { clearHint } from '../lib/hint'
 
 /**
  * "Relive it from the beginning" — the visible reset at the end of the
  * finale. Two-step inline confirm (one stray tap must not wipe a 7/7
- * hunt), then both localStorage keys are cleared and the page reloads
- * on the bare pathname — stripping the query so the ?key owner bypass
- * in isUnlocked() can't silently re-unlock the gate.
+ * hunt), then every localStorage key (gate, secrets, counter tooltip)
+ * is cleared and the page reloads on the bare pathname — stripping the
+ * query so the ?key owner bypass in isUnlocked() can't silently
+ * re-unlock the gate.
  */
 export default function StartOver() {
   const [confirming, setConfirming] = useState(false)
@@ -23,6 +25,7 @@ export default function StartOver() {
     try {
       clearFound()
       lock()
+      clearHint()
     } finally {
       window.location.replace(window.location.pathname)
     }
