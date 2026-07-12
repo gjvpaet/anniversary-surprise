@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import type { EasterEgg } from '../content'
+import { useSecrets } from '../SecretsContext'
 
 interface Props {
   egg: EasterEgg
+  /** Owning era's id — half of the egg's stable identity for the hunt. */
+  eraId: string
+  /** Opens the fullscreen player for an egg that carries a video. */
+  onPlayVideo: (src: string) => void
 }
 
 /**
@@ -11,9 +16,15 @@ interface Props {
  * the tap, and the bubble holds the one-liner only she gets. Tapping
  * anywhere else (or ESC) closes it.
  */
-export default function EasterEggButton({ egg }: Props) {
+export default function EasterEggButton({ egg, eraId, onPlayVideo }: Props) {
   const root = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
+  const { markFound } = useSecrets()
+
+  const toggle = () => {
+    if (!open) markFound(eraId, egg.icon)
+    setOpen(!open)
+  }
 
   useEffect(() => {
     if (!open) return
@@ -39,7 +50,7 @@ export default function EasterEggButton({ egg }: Props) {
     >
       <button
         type="button"
-        onClick={() => setOpen((o) => !o)}
+        onClick={toggle}
         aria-expanded={open}
         aria-label={open ? 'Hide this little secret' : 'A little secret — tap me'}
         className="relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full"
@@ -59,6 +70,15 @@ export default function EasterEggButton({ egg }: Props) {
           className="egg-pop absolute bottom-full left-1/2 mb-1 w-52 -translate-x-1/2 rounded-xl bg-white/95 p-3 text-center shadow-xl"
         >
           <p className="font-hand text-lg leading-snug text-ink">{egg.message}</p>
+          {egg.video && (
+            <button
+              type="button"
+              onClick={() => onPlayVideo(egg.video!)}
+              className="mt-2 inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-full bg-rose px-4 py-1.5 font-hand text-lg leading-none text-white shadow-sm"
+            >
+              ▶ press play
+            </button>
+          )}
           {/* bubble tail */}
           <span
             aria-hidden

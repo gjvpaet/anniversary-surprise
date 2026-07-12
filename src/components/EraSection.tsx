@@ -12,6 +12,8 @@ interface Props {
   onActive: (chapter: number) => void
   /** Opens the lightbox on this era's polaroid at the given index. */
   onOpenPolaroid: (era: Era, index: number) => void
+  /** Opens the fullscreen player for an easter egg's video. */
+  onPlayVideo: (src: string) => void
 }
 
 /**
@@ -24,7 +26,7 @@ interface Props {
  * reduced-motion users get a complete static page — the PRD's
  * crossfade-only fallback.
  */
-export default function EraSection({ era, onActive, onOpenPolaroid }: Props) {
+export default function EraSection({ era, onActive, onOpenPolaroid, onPlayVideo }: Props) {
   const section = useRef<HTMLElement>(null)
   const stage = useRef<HTMLDivElement>(null)
   const island = useRef<HTMLDivElement>(null)
@@ -153,7 +155,12 @@ export default function EraSection({ era, onActive, onOpenPolaroid }: Props) {
                 className="max-h-[38svh] w-auto max-w-full drop-shadow-xl"
               />
               {era.easterEggs.map((egg) => (
-                <EasterEggButton key={egg.icon} egg={egg} />
+                <EasterEggButton
+                  key={egg.icon}
+                  egg={egg}
+                  eraId={era.id}
+                  onPlayVideo={onPlayVideo}
+                />
               ))}
             </div>
           </div>
