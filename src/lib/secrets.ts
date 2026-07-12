@@ -42,3 +42,12 @@ export function saveFound(found: Set<string>, storage: Storage = localStorage): 
     // storage unavailable — the hunt still works within this visit
   }
 }
+
+/** Reset for the "start over" control — forgets every found secret. */
+export function clearFound(storage: Storage = localStorage): void {
+  try {
+    storage.removeItem(STORAGE_KEY)
+  } catch {
+    // storage unavailable — nothing persisted, so nothing to clear
+  }
+}

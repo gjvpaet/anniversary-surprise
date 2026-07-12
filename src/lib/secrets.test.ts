@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { eggId, loadFound, saveFound, totalSecrets } from './secrets'
+import { clearFound, eggId, loadFound, saveFound, totalSecrets } from './secrets'
 
 /** Minimal in-memory stand-in for localStorage. */
 function fakeStorage(initial: Record<string, string> = {}): Storage {
@@ -66,5 +66,22 @@ describe('loadFound / saveFound', () => {
     const storage = throwingStorage()
     expect(() => saveFound(new Set(['x:y']), storage)).not.toThrow()
     expect(loadFound(storage)).toEqual(new Set())
+  })
+})
+
+describe('clearFound', () => {
+  it('removes the stored ids', () => {
+    const storage = fakeStorage({ 'eightyears:secrets': '["a:🎬"]' })
+    clearFound(storage)
+    expect(storage.getItem('eightyears:secrets')).toBeNull()
+    expect(loadFound(storage)).toEqual(new Set())
+  })
+
+  it('never throws when storage is unavailable', () => {
+    const storage = fakeStorage()
+    storage.removeItem = () => {
+      throw new Error('denied')
+    }
+    expect(() => clearFound(storage)).not.toThrow()
   })
 })
