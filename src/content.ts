@@ -82,11 +82,11 @@ export const content: Content = {
       polaroids: [
         { src: '/photos/era1-01.webp', caption: 'day one', date: 'Jul 15, 2018' },
         { src: '/photos/era1-02.webp', caption: 'our first dinner date', date: 'Jun 2018' },
-        { src: '/photos/era1-03.webp', caption: 'already planning the world', date: 'Jul 2018' },
+        { src: '/photos/era1-03.webp', caption: 'dreaming up our someday list', date: 'Jul 2018' },
         { src: '/photos/era1-04.webp', caption: 'under a sky of stars', date: 'Nov 2018' },
       ],
       easterEggs: [
-        { x: 0.62, y: 0.41, icon: '🗺️', message: 'Tokyo. Dubai. London. We pointed at a wall of posters — and then we actually went.' },
+        { x: 0.62, y: 0.41, icon: '🗺️', message: 'Tokyo. Dubai. London. We pointed at a wall of posters — someday, we\'ll see every one of them.' },
       ],
     },
     {
@@ -111,7 +111,7 @@ export const content: Content = {
       chapter: 3,
       title: 'The year the world closed.',
       years: '2020–2021',
-      note: 'So we built our own little world instead — duets at the keyboard, sushi anniversaries at home, a food business from scratch, and a puppy named Bella.',
+      note: 'So we built our own little world instead — sushi anniversaries at home, a food business from scratch, and a puppy named Bella.',
       art: { layers: ['/art/era3.webp'] },
       polaroids: [
         { src: '/photos/era3-01.webp', caption: 'we started a bakery??', date: 'Jul 2020' },
@@ -162,7 +162,7 @@ export const content: Content = {
       chapter: 6,
       title: 'Eight years of us.',
       years: '2025–today',
-      note: 'A cat joined the family. We hiked to a summit and looked back at how far we have come. Eight years in, every day still feels like the good part.',
+      note: 'We hiked to a summit and looked back at how far we have come. Eight years in, every day still feels like the good part.',
       art: { layers: ['/art/era6.webp'] },
       polaroids: [
         { src: '/photos/era6-01.webp', caption: 'the newest member', date: 'Mar 2026' },

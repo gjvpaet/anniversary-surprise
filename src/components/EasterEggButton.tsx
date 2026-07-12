@@ -44,10 +44,11 @@ export default function EasterEggButton({ egg }: Props) {
         aria-label={open ? 'Hide this little secret' : 'A little secret — tap me'}
         className="relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full"
       >
-        {/* soft halo inviting the tap */}
+        {/* radiating ring + solid badge so the egg reads as tappable */}
+        <span aria-hidden className="egg-ping absolute inset-1 rounded-full bg-rose/50" />
         <span
           aria-hidden
-          className="absolute inset-1.5 animate-pulse rounded-full bg-cream/70 shadow-sm motion-reduce:animate-none"
+          className="absolute inset-1 rounded-full bg-white/95 shadow-md ring-2 ring-rose/40"
         />
         <span className="relative text-xl drop-shadow-sm">{egg.icon}</span>
       </button>
