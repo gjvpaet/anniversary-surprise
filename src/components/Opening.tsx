@@ -66,6 +66,7 @@ export default function Opening() {
               key={era.id}
               src={era.art.layers[era.art.layers.length - 1]}
               alt=""
+              decoding="async"
               className="w-14 drop-shadow md:w-20"
               style={{ marginTop: `${Math.abs(i - 2.5) * 10}px` }}
             />

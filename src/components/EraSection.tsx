@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '../lib/motion'
 import type { Era } from '../content'
+import EasterEggButton from './EasterEggButton'
 
 /** Final resting tilt for each polaroid in the fan, by index. */
 const ROTATIONS = [-6, 5, -4, 7]
@@ -142,13 +143,19 @@ export default function EraSection({ era, onActive, onOpenPolaroid }: Props) {
       >
         <div ref={island} className="w-full">
           <div ref={float}>
-            <img
-              src={era.art.layers[era.art.layers.length - 1]}
-              alt=""
-              loading={era.chapter === 1 ? 'eager' : 'lazy'}
-              decoding="async"
-              className="mx-auto max-h-[38svh] w-auto max-w-full drop-shadow-xl"
-            />
+            {/* shrink-wraps the art so the eggs' % coords track it */}
+            <div className="relative mx-auto w-fit max-w-full">
+              <img
+                src={era.art.layers[era.art.layers.length - 1]}
+                alt=""
+                loading={era.chapter === 1 ? 'eager' : 'lazy'}
+                decoding="async"
+                className="max-h-[38svh] w-auto max-w-full drop-shadow-xl"
+              />
+              {era.easterEggs.map((egg) => (
+                <EasterEggButton key={egg.icon} egg={egg} />
+              ))}
+            </div>
           </div>
         </div>
 

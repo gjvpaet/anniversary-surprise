@@ -25,6 +25,25 @@
   --font-hand: 'Caveat Variable', 'Bradley Hand', 'Segoe Print', cursive;
 }
 
+/* Easter-egg bubble entrance. Tailwind v4 translate utilities use the
+   `translate` property, so animating `transform` here doesn't fight the
+   bubble's -translate-x-1/2 centering. */
+@keyframes egg-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+.egg-pop {
+  animation: egg-pop 0.25s ease-out;
+  transform-origin: bottom center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .egg-pop {
+    animation: none;
+  }
+}
+
 /* No CSS smooth scrolling — it fights GSAP's programmatic scrolls. */
 body {
   background: var(--color-cream);

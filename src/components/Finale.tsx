@@ -26,6 +26,7 @@ const SCATTER = [
  */
 export default function Finale() {
   const root = useRef<HTMLDivElement>(null)
+  const ninthFloat = useRef<HTMLDivElement>(null)
   const letterSection = useRef<HTMLElement>(null)
   const swirl = useRef<HTMLDivElement>(null)
   const envelope = useRef<HTMLDivElement>(null)
@@ -57,6 +58,15 @@ export default function Finale() {
           },
         )
       }
+
+      // ninth island idle bob, same rhythm as the era islands
+      gsap.to(ninthFloat.current, {
+        y: -9,
+        duration: 2.7,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+      })
 
       // ── the letter: pin + swirl ─────────────────────────────
       const photos = swirl.current ? Array.from(swirl.current.children) : []
@@ -123,16 +133,26 @@ export default function Finale() {
     <div ref={root}>
       {/* The 9th island */}
       <section className="flex min-h-[70svh] flex-col items-center justify-center gap-4 bg-gradient-to-b from-cream to-lavender/30 px-6 py-16 text-center">
-        <img
-          src="/art/ninth.webp"
-          alt=""
-          loading="lazy"
-          decoding="async"
-          data-reveal
-          className="w-full max-w-sm drop-shadow-xl"
-        />
+        {/* reveal (y+opacity) and bob (y) on separate wrappers so the
+            tweens never fight over the same transform */}
         <div data-reveal>
-          <h2 className="font-display text-2xl text-ink">{content.ninthIsland.title}</h2>
+          <div ref={ninthFloat}>
+            <img
+              src="/art/ninth.webp"
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="w-full max-w-sm drop-shadow-xl"
+            />
+          </div>
+        </div>
+        <div data-reveal>
+          <p className="text-xs tracking-[0.2em] text-rose uppercase">
+            Chapter 07 · to be continued…
+          </p>
+          <h2 className="mt-2 font-display text-2xl text-ink">
+            {content.ninthIsland.title}
+          </h2>
           <p className="mx-auto mt-2 max-w-md text-sm text-ink-soft">
             {content.ninthIsland.note}
           </p>
