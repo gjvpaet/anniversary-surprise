@@ -63,7 +63,8 @@ export interface Content {
 New `src/secrets.tsx` — a `SecretsProvider` context + `useSecrets()` hook:
 
 - State: `found: Set<string>`, `markFound(id)`, `total` (derived), `allFound`.
-- Persisted to `localStorage` key `derv-secrets` (JSON array). Wrapped in
+- Persisted to `localStorage` key `eightyears:secrets` (JSON array — matches
+  the gate's existing `eightyears:unlocked` convention). Wrapped in
   try/catch: if storage is unavailable (private mode), fall back to in-memory
   state — the hunt still works within the visit, it just resets on reload.
 - `EasterEggButton` calls `markFound(id)` on first open of its popover.
