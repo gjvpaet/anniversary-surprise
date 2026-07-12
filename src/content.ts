@@ -30,6 +30,8 @@ export interface EasterEgg {
   icon: string
   /** The one-liner only she gets */
   message: string
+  /** Optional: a video this egg offers to play (fullscreen overlay) */
+  video?: string
 }
 
 export interface EraArt {
@@ -58,6 +60,8 @@ export interface Content {
   song: { title: string; artist: string; file: string }
   eras: Era[]
   ninthIsland: { title: string; note: string }
+  /** Bonus gallery unlocked by finding every easter egg. */
+  vault: { title: string; note: string; photos: Polaroid[] }
   letter: { greeting: string; body: string[]; signoff: string }
 }
 
@@ -87,6 +91,7 @@ export const content: Content = {
       ],
       easterEggs: [
         { x: 0.62, y: 0.41, icon: '🗺️', message: 'Tokyo. Dubai. London. We pointed at a wall of posters — someday, we\'ll see every one of them.' },
+        { x: 0.35, y: 0.55, icon: '🎬', message: 'July 15, 2018. Twenty-one seconds of the actual day one.', video: '/video/day-one.mp4' },
       ],
     },
     {
@@ -177,6 +182,28 @@ export const content: Content = {
   ninthIsland: {
     title: 'Year 9 — under construction',
     note: 'Still drawing the blueprints. All of them have you in them.',
+  },
+
+  vault: {
+    title: 'The outtakes',
+    note: 'Every photo that didn\'t fit on an island — yours now, because you looked closer.',
+    photos: [
+      { src: '/photos/vault-01.webp', caption: 'day one, the quiet take', date: 'Jul 15, 2018' },
+      { src: '/photos/vault-02.webp', caption: 'day one, one more', date: 'Jul 15, 2018' },
+      { src: '/photos/vault-03.webp', caption: 'the wall where it started', date: 'Jul 2018' },
+      { src: '/photos/vault-04.webp', caption: 'a whole road to ourselves', date: 'Nov 2018' },
+      { src: '/photos/vault-05.webp', caption: 'a kiss on the cheek', date: 'Jan 2019' },
+      { src: '/photos/vault-06.webp', caption: 'a night under the lights', date: 'Jan 2019' },
+      { src: '/photos/vault-07.webp', caption: 'the Chocolate Hills behind us', date: 'Nov 2019' },
+      { src: '/photos/vault-08.webp', caption: 'round frames, Bohol sun', date: 'Nov 2019' },
+      { src: '/photos/vault-09.webp', caption: "Amelia's fan mail", date: 'Jul 2020' },
+      { src: '/photos/vault-10.webp', caption: "new year's feast, party of three", date: 'Jan 1, 2021' },
+      { src: '/photos/vault-11.webp', caption: 'ramen date, pandemic edition', date: 'Feb 2021' },
+      { src: '/photos/vault-12.webp', caption: "Bella's other human", date: 'May 2021' },
+      { src: '/photos/vault-13.webp', caption: 'crewmates', date: 'Oct 2023' },
+      { src: '/photos/vault-14.webp', caption: 'tempura for two', date: 'Apr 2024' },
+      { src: '/photos/vault-15.webp', caption: 'the whole crew, plus Bella', date: 'Jun 2025' },
+    ],
   },
 
   letter: {
