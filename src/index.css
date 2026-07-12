@@ -67,6 +67,28 @@
   }
 }
 
+/* Counter-chip debut — three soft rose pulses on a dedicated overlay
+   span (animating the chip's own box-shadow would stomp its Tailwind
+   ring + shadow, which are box-shadow underneath — same reason
+   egg-ping animates a separate span). */
+@keyframes chip-glow {
+  0% {
+    box-shadow: 0 0 4px 2px color-mix(in srgb, var(--color-rose) 55%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 12px 10px color-mix(in srgb, var(--color-rose) 0%, transparent);
+  }
+}
+.chip-glow {
+  animation: chip-glow 0.9s ease-out 3;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chip-glow {
+    animation: none;
+  }
+}
+
 /* No CSS smooth scrolling — it fights GSAP's programmatic scrolls. */
 body {
   background: var(--color-cream);
