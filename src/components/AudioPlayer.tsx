@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { content } from '../content'
 
 /**
@@ -11,6 +11,32 @@ export default function AudioPlayer() {
   const audio = useRef<HTMLAudioElement>(null)
   const [playing, setPlaying] = useState(false)
   const [everPlayed, setEverPlayed] = useState(false)
+  // set when a video interrupts the song, so it only resumes if it was playing
+  const resumeAfterVideo = useRef(false)
+
+  useEffect(() => {
+    const onPause = () => {
+      const el = audio.current
+      if (!el || el.paused) return
+      resumeAfterVideo.current = true
+      el.pause()
+      setPlaying(false)
+    }
+    const onResume = () => {
+      const el = audio.current
+      if (!el || !resumeAfterVideo.current) return
+      resumeAfterVideo.current = false
+      el.play()
+        .then(() => setPlaying(true))
+        .catch(() => setPlaying(false))
+    }
+    window.addEventListener('pause-song', onPause)
+    window.addEventListener('resume-song', onResume)
+    return () => {
+      window.removeEventListener('pause-song', onPause)
+      window.removeEventListener('resume-song', onResume)
+    }
+  }, [])
 
   const toggle = () => {
     const el = audio.current
