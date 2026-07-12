@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { gsap } from '../lib/motion'
 import { content } from '../content'
 import Counter from './Counter'
+import StartOver from './StartOver'
 
 /**
  * Starting scatter for the swirl photos (one per era), as fractions of
@@ -182,7 +183,7 @@ export default function Finale() {
           </div>
           <div
             ref={card}
-            className="max-h-[55svh] w-full overflow-y-auto bg-[#fffdf5] p-6 text-left shadow-xl md:p-8"
+            className="min-h-0 max-h-[55svh] w-full overflow-y-auto bg-[#fffdf5] p-6 text-left shadow-xl md:p-8"
           >
             <p className="font-display text-lg text-ink">{content.letter.greeting}</p>
             {content.letter.body.map((para) => (
@@ -199,6 +200,7 @@ export default function Finale() {
             <div className="mt-4">
               <Counter />
             </div>
+            <StartOver />
           </div>
         </div>
       </section>
