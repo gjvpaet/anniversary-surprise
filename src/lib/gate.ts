@@ -71,3 +71,12 @@ export function isUnlocked(): boolean {
 export function unlock(): void {
   localStorage.setItem(STORAGE_KEY, '1')
 }
+
+/**
+ * Reset for the "start over" control — she meets the gate again.
+ * Callers must reload WITHOUT the ?key param, or the bypass in
+ * isUnlocked() silently re-unlocks on the next visit.
+ */
+export function lock(): void {
+  localStorage.removeItem(STORAGE_KEY)
+}
